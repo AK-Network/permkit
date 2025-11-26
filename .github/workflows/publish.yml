@@ -1,31 +1,42 @@
-name: Publish to npm
+name: Publish package to npm
 
 on:
   push:
     tags:
-    - 'v*' # publish when you push a tag like v1.2.3
+    - "v*" # publish only when pushing version tags, e.g., v1.2.3
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Use Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
-        registry-url: 'https://registry.npmjs.org/'
+        node-version: 20
+        registry-url: "https://registry.npmjs.org/"
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
 
     - name: Install dependencies
-      run: npm ci
+      run: pnpm install --frozen-lockfile
 
+    - name: Run tests (Vitest)
+      run: pnpm test
+
+    # Build your package (svelte-kit sync + svelte-package + publint)
     - name: Build package
-      run: npm run build --if-present
+      run: pnpm prepack
 
-    - name: Publish package
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    # Publish `dist/` folder as the npm package
+    - name: Publish to npm
+      uses: JS-DevTools/npm-publish@v3
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./dist
