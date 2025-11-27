@@ -1,5 +1,12 @@
 import type { RoleDefinition, UserAttributes } from "./_types.ts";
 
+/**
+ * Expand a user's roles into a flat list of permissions.
+ *
+ * @param user The user attributes, including assigned roles
+ * @param roles Role definitions mapping role names to permissions
+ * @returns Array of permissions granted to the user
+ */
 export function expandRoles(
   user: UserAttributes,
   roles: RoleDefinition

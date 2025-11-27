@@ -1,6 +1,10 @@
 import { PermissionValidationError } from "../shared/errors.ts";
 import type { ABACRule } from "../shared/_types.ts";
 
+/**
+ * @internal
+ * Validates an array of ABAC rules and throws if invalid
+ */
 export function validateRules(rules: ABACRule[]): void {
   const names = new Set<string>();
 

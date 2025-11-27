@@ -4,6 +4,17 @@
 //  - users.** (future extension)
 // For now: simple "*" wildcard system.
 
+/**
+ * Match a requested permission string against an available permission pattern.
+ *
+ * Supports wildcards like:
+ * - "posts.*" matches "posts.read", "posts.write"
+ * - "billing:invoice.*" matches "billing:invoice.create", etc.
+ *
+ * @param requested The requested permission
+ * @param available The permission pattern to check
+ * @returns true if allowed, false otherwise
+ */
 export function matchPermission(
   requested: string,
   available: string

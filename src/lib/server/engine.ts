@@ -12,6 +12,12 @@ import type {
 import { RuleLoader } from "./ruleLoader.ts";
 import { evaluatePermission } from "./evaluator.ts";
 
+/**
+ * Create a Permission Engine instance.
+ *
+ * @param opts Options for engine creation
+ * @returns A PermissionEngine instance
+ */
 export async function createPermissionEngine(
   opts: PermissionEngineOptions
 ): Promise<PermissionEngine> {

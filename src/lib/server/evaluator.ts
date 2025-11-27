@@ -9,6 +9,16 @@ import type {
   RoleDefinition
 } from "../shared/_types.ts";
 
+/**
+ * Evaluate a permission request using RBAC, PBAC, and ABAC rules.
+ *
+ * Combines:
+ * - Role-based permissions
+ * - Direct user permissions
+ * - ABAC rules
+ *
+ * @internal
+ */
 export async function evaluatePermission(
   ctx: PermissionContext,
   roles: RoleDefinition,

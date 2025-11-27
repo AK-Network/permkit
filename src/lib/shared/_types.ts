@@ -18,6 +18,9 @@ export interface EnvironmentAttributes {
   [key: string]: any;
 }
 
+/**
+ * Context passed to ABAC, PBAC, or RBAC evaluation.
+ */
 export interface PermissionContext {
   user: UserAttributes;
   permission: PermissionString;
@@ -25,6 +28,9 @@ export interface PermissionContext {
   env?: EnvironmentAttributes;
 }
 
+/**
+ * An individual ABAC rule.
+ */
 export interface ABACRule {
   name: string;
   description?: string;
@@ -39,6 +45,9 @@ export interface ABACRule {
   condition: (ctx: PermissionContext) => boolean | Promise<boolean>;
 }
 
+/**
+ * Result returned by any permission check.
+ */
 export interface PermissionCheckResult {
   allowed: boolean;
   reason: string | null;

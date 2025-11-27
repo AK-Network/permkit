@@ -1,6 +1,10 @@
 import type { RuleSource, ABACRule } from "../shared/_types.ts";
 import { validateRules } from "./rules.ts";
 
+/**
+ * @internal
+ * Handles loading and watching ABAC rules from a RuleSource
+ */
 export class RuleLoader {
   #source: RuleSource;
   #rules: ABACRule[] = [];

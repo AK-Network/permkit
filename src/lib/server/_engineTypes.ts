@@ -6,6 +6,9 @@ import type {
   RuleSource
 } from "../shared/_types.ts";
 
+/**
+ * Options used to configure the Permission Engine.
+ */
 export interface PermissionEngineOptions {
   roles: RoleDefinition;
   permissions?: string[]; // optional schema
@@ -14,6 +17,9 @@ export interface PermissionEngineOptions {
   onRulesLoaded?: (rules: ABACRule[]) => void;
 }
 
+/**
+ * The Permission Engine instance.
+ */
 export interface PermissionEngine {
   check(ctx: PermissionContext): Promise<PermissionCheckResult>;
   getRules(): ABACRule[];

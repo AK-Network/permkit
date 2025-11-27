@@ -2,7 +2,7 @@ import { error } from "@sveltejs/kit";
 import type { RequestEvent } from "@sveltejs/kit";
 import type { PermissionContext } from "../shared/_types.ts";
 
-type LoadFunction<T> = (event: RequestEvent) => T | Promise<T>;
+export type LoadFunction<T> = (event: RequestEvent) => T | Promise<T>;
 
 /**
  * @param permission {string}

@@ -4,6 +4,18 @@ import type {
   PermissionCheckResult
 } from "./_types.ts";
 
+/**
+ * Evaluate ABAC rules for a given context.
+ *
+ * Rules are sorted by ascending priority.
+ * The first matching rule with an explicit effect (`allow` or `deny`) is applied.
+ * If no rules match, the result depends on `denyByDefault`.
+ *
+ * @param ctx The permission context
+ * @param rules The ABAC rules to evaluate
+ * @param denyByDefault Whether to deny by default if no rules match
+ * @returns PermissionCheckResult
+ */
 export async function evaluateABAC(
   ctx: PermissionContext,
   rules: ABACRule[],
