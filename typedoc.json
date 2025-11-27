@@ -1,0 +1,16 @@
+{
+  "entryPoints": ["src/lib/index.ts"],
+  "out": "docs",
+  "cleanOutputDir": true,
+  "skipErrorChecking": true,
+  "excludeExternals": false,
+  "excludePrivate": true,
+  "excludeProtected": false,
+  "excludeInternal": true,
+  "includeVersion": true,
+  "categorizeByGroup": true,
+  "categoryOrder": ["Shared", "Server", "Client", "Types", "*"],
+  "tsconfig": "./tsconfig.json",
+  "plugin": ["typedoc-plugin-markdown"],
+  "githubPages": false
+}

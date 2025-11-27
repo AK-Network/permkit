@@ -1,0 +1,40 @@
+name: Generate Docs
+
+# Trigger on main branch push or version tag push
+on:
+  push:
+    branches:
+    - main
+    tags:
+    - "v*"
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1️⃣ Checkout code
+    - uses: actions/checkout@v4
+
+    # 2️⃣ Setup Node.js
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    # 3️⃣ Setup pnpm
+    - uses: pnpm/action-setup@v4
+      with:
+        version: 9
+
+    # 4️⃣ Install dependencies
+    - run: pnpm install --frozen-lockfile
+
+    # 5️⃣ Run TypeDoc
+    - run: pnpm docs:create
+
+    # 6️⃣ Deploy to GitHub Pages (optional)
+    - name: Deploy docs to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v6
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs

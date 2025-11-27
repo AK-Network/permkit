@@ -11,6 +11,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
+		"docs:create": "typedoc --options typedoc.json",
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run",
 		"ast:build": "tsx ./ast/index.ts --out-dir ./dist/ast",
@@ -64,14 +65,41 @@
 		"tailwindcss": "^4.1.17",
 		"ts-morph": "^27.0.2",
 		"tsx": "^4.20.6",
+		"typedoc": "^0.28.14",
+		"typedoc-plugin-markdown": "^4.9.0",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.47.0",
 		"vite": "^7.2.2",
 		"vitest": "^4.0.10",
 		"vitest-browser-svelte": "^2.0.1"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ak-network/permkit.git"
+	},
+	"author": "AK Network <ak-network@gmail.com>",
+	"homepage": "https://github.com/ak-network/permkit#readme",
+	"bugs": {
+		"url": "https://github.com/ak-network/permkit/issues"
+	},
 	"keywords": [
-		"svelte"
+		"svelte",
+		"sveltekit",
+		"permissions",
+		"rbac",
+		"abac",
+		"pbac",
+		"access-control",
+		"authorization",
+		"roles",
+		"rules-engine",
+		"server-side",
+		"client-side",
+		"hot-reload",
+		"json-rules",
+		"async-rules",
+		"guard",
+		"can-component"
 	],
 	"publishConfig": {
 		"access": "public"
