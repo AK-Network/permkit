@@ -1,5 +1,5 @@
 import { ABACRules } from "./collections.ts";
-import type { ABACRule, RuleSource } from "../../index.ts";
+import type { ABACRule, RuleSource } from "../../../lib/index.ts";
 
 export const mongoRuleSource: RuleSource = {
   load: async (): Promise<ABACRule[]> => {

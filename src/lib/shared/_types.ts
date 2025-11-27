@@ -60,5 +60,5 @@ export interface RoleDefinition {
 
 export interface RuleSource {
   load: () => Promise<ABACRule[]>;
-  watch?: (onChange: () => void) => void | (() => void);
+  watch?: (onChange: () => void) => void | (() => void) | Promise<void> | Promise<() => void>;
 }
