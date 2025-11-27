@@ -3,8 +3,8 @@ name: Generate Docs
 # Trigger on main branch push or version tag push
 on:
   push:
-    branches:
-    - main
+    # branches:
+    # - main
     tags:
     - "v*"
 
@@ -34,7 +34,7 @@ jobs:
 
     # 6️⃣ Deploy to GitHub Pages (optional)
     - name: Deploy docs to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v6
+      uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
