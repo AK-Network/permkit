@@ -16,15 +16,15 @@ export const mongoRuleSource: RuleSource = {
     }));
   },
 
-  // watch: async (onChange) => {
-  //   // const col = await ABACRules();
-  //   // const stream = col.watch();
+  watch: async (onChange) => {
+    // const col = await ABACRules();
+    // const stream = col.watch();
 
-  //   // stream.on("change", async () => {
-  //   //   await onChange(); // triggers engine reload
-  //   // });
+    // stream.on("change", async () => {
+    //   await onChange(); // triggers engine reload
+    // });
 
-  //   // return () => stream.close();
+    // return () => stream.close();
 
 
 	// 	console.warn(
@@ -34,5 +34,7 @@ export const mongoRuleSource: RuleSource = {
   //   let timer = setInterval(onChange, 10000); // every 10 seconds
 
   //   return () => clearInterval(timer);
-  // }
+
+		return
+  }
 };

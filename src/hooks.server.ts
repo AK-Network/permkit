@@ -1,4 +1,4 @@
-import { handlePermissions } from "./lib/index.ts"; // @ak-network/permkit
+import { handlePermissions, type UserAttributes } from "./lib/index.ts"; // @ak-network/permkit
 import { createEngine } from "./app/lib/server/engine.ts";
 import { Users } from "./app/lib/server/collections.ts";
 
@@ -14,7 +14,14 @@ export const handle = handlePermissions({
     if (!userId) return null;
 
     const users = await Users();
-		const user = await users.findOne({ email: 'editor@example.com' });
+		const user = await users.findOne({ email: 'editor@example.com' }, {
+			projection: {
+				_id: 0,
+				id: "$_id",
+				email: 1,
+				roles: 1
+			}
+		}) as unknown as UserAttributes | null;
 
 		console.log(user)
     return user
