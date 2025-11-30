@@ -1,6 +1,6 @@
 {
 	"name": "@ak-network/permkit",
-	"version": "0.1.5",
+	"version": "0.1.2",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",
