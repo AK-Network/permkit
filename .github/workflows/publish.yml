@@ -23,7 +23,10 @@ jobs:
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 9
+        version: 10
+
+    - name: List current directory
+      run: ls -la
 
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
