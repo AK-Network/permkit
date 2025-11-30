@@ -5,34 +5,49 @@ on:
     branches:
     - main
 
-# Trusted publishing using OIDC. For more info check:
-# https://docs.npmjs.com/trusted-publishers#supported-cicd-providers
-permissions:
-  id-token: write # Required for OIDC
-  contents: write
-
 jobs:
   publish:
+    # Trusted publishing using OIDC. For more info check:
+    # https://docs.npmjs.com/trusted-publishers#supported-cicd-providers
+    permissions:
+      id-token: write # Required for OIDC
+      contents: write # to create release (changesets/action)
+      pull-requests: write # to create pull request (changesets/action)
+
+    if: github.repository == 'AK-Network/permkit' # prevents this action from running on forks
     # if: contains(github.event.head_commit.message, '🚀 publish(npm):')
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+        fetch-depth: 0
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 20
+        node-version: 24.x
         registry-url: "https://registry.npmjs.org/"
-
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 10
+        cache: pnpm
 
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
+
+    - name: Create Release Pull Request or Publish to npm
+      id: changesets
+      uses: changesets/action@v1
+      with:
+        # This expects you to have a script called release which does a build for your packages and calls changeset publish
+        publish: pnpm changeset:release
+        version: pnpm changeset:version
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_CONFIG_PROVENANCE: true
 
     # ⬇ Fix Vitest + Playwright issue
     # - name: Install Playwright browsers
