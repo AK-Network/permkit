@@ -2,11 +2,12 @@ name: Publish package to npm
 
 on:
   push:
-    tags:
-    - "v*" # publish only when pushing version tags, e.g., v1.2.3
+    branches:
+    - main
 
 jobs:
   publish:
+    if: contains(github.event.head_commit.message, '🚀 publish(npm):')
     runs-on: ubuntu-latest
 
     steps:
