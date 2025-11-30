@@ -1241,10 +1241,10 @@ MIT
 
  -->
 
-```bash
+<!-- ```bash
 git commit -m "🚀 publish(npm): release v0.1.2"
 git push origin main
-```
+``` -->
 
 
  # 🧩 @ak-network/permkit
