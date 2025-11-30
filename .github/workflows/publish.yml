@@ -5,7 +5,8 @@ on:
     branches:
     - main
 
-# ⬇ Fix Vitest + Playwright issue
+# Trusted publishing using OIDC. For more info check:
+# https://docs.npmjs.com/trusted-publishers#supported-cicd-providers
 permissions:
   id-token: write # Required for OIDC
   contents: read
@@ -34,8 +35,8 @@ jobs:
       run: pnpm install --frozen-lockfile
 
     # ⬇ Fix Vitest + Playwright issue
-    - name: Install Playwright browsers
-      run: pnpm exec playwright install --with-deps
+    # - name: Install Playwright browsers
+    #   run: pnpm exec playwright install --with-deps
 
     - name: Run tests (Vitest)
       run: pnpm test
@@ -46,4 +47,4 @@ jobs:
 
     # Publish `dist/` folder as the npm package
     - name: Publish to npm
-      run: pnpm publish
+      run: pnpm publish --no-git-checks
